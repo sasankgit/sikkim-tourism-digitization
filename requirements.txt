@@ -1,0 +1,3 @@
+node modules (npm i)
+tailwind (npm install tailwindcss @tailwindcss/vite)
+firebase (npm install firebase)
