@@ -1,3 +1,7 @@
 node modules (npm i)
 tailwind (npm install tailwindcss @tailwindcss/vite)
 firebase (npm install firebase)
+npm install three @react-three/fiber @react-three/drei
+npm install @mui/material @emotion/react @emotion/styled   (only used in Login.jsx,and sighnup. can be removed if not using Login)
+npm install framer-motion
+npm i lucide-react
