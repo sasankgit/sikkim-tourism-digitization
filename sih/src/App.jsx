@@ -16,10 +16,8 @@ function App() {
       <Navbar />
       <Routes>
         {/* Default Route → Login Page */}
-        <Route path="/" element={<Login />} />
-        <Route path= "/Login" element={<Login />} />
-
-        <Route path= "/Signup" element={<Signup />} />
+        <Route path="/" element={<Dashboard />} />
+        
         <Route path = "/dashboard" element = {<Dashboard/>} />
         <Route path = "/viewer" element = {<Viewer/>} />
         
