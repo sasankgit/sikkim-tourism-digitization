@@ -1,7 +1,7 @@
 // src/pages/Login.jsx
 import React, { useState } from "react";
-import { auth } from "../firebaseConfig";
-import { signInWithEmailAndPassword } from "firebase/auth";
+//import { auth } from "../firebaseConfig";
+//import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
