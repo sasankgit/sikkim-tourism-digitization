@@ -37,7 +37,7 @@ const Dashboard = () => {
       elevation: "1,550m",
       founded: "1740",
       description: "The largest monastery in Sikkim and seat of the Karma Kagyu lineage of Tibetan Buddhism",
-      image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=400&h=300&fit=crop",
+      image: "/imagesforme/Rumtek Monastery.png",
       significance: "Golden Stupa",
       visitors: "50,000+ annually",
       speciality: "Houses the most sacred relics and maintains 300+ monks"
@@ -48,7 +48,7 @@ const Dashboard = () => {
       elevation: "2,085m",
       founded: "1705",
       description: "One of the oldest and most important monasteries in Sikkim, meaning 'Perfect Sublime Lotus'",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
+      image: "/imagesforme/Pemayangtse Monastery.png",
       significance: "Royal Monastery",
       visitors: "30,000+ annually",
       speciality: "Only pure-blooded Sikkimese allowed as monks originally"
@@ -59,7 +59,7 @@ const Dashboard = () => {
       elevation: "1,840m",
       founded: "1909",
       description: "Beautiful monastery with panoramic views of Kanchenjunga, the world's third highest peak",
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
+      image: "/imagesforme/Enchey Monastery.jpg",
       significance: "Solitary Temple",
       visitors: "25,000+ annually",
       speciality: "Famous for Cham dance during Losar festival"
@@ -70,7 +70,7 @@ const Dashboard = () => {
       elevation: "1,465m",
       founded: "1717",
       description: "Sacred monastery believed to cleanse sins of pilgrims who visit during Bhumchu festival",
-      image: "/imagesforme/monastrybig.png",
+      image: "/imagesforme/Tashiding_Monastery.jpg",
       significance: "Heart of Sikkim",
       visitors: "40,000+ annually",
       speciality: "The sacred Bhumchu water ceremony"
@@ -87,7 +87,7 @@ const Dashboard = () => {
   ];
 
   const backgroundStyle = {
-    backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&h=1080&fit=crop')`,
+    backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('/imagesforme/Sunrise_over_Kangchenjunga.jpg')`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundAttachment: 'fixed'
@@ -97,33 +97,7 @@ const Dashboard = () => {
     <div className="bg-gray-50">
       {/* Hero Section with Background Image */}
       <div className="relative min-h-screen" style={backgroundStyle}>
-        {/* Navigation */}
-        <nav 
-          className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-            scrollY > 100 ? 'bg-black bg-opacity-90 backdrop-blur-lg' : 'bg-transparent'
-          }`}
-        >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center py-4">
-              <div className="flex items-center space-x-2">
-                <Mountain className="w-8 h-8 text-white" />
-                <span className="text-white font-bold text-xl">Exploring Sikkim</span>
-              </div>
-              <div className="hidden md:flex space-x-8">
-                <a href="#monasteries" className="text-white hover:text-blue-300 transition-colors">Monasteries</a>
-                <a href="#culture" className="text-white hover:text-blue-300 transition-colors">Culture</a>
-                <a href="#history" className="text-white hover:text-blue-300 transition-colors">History</a>
-                <a href="#travel" className="text-white hover:text-blue-300 transition-colors">Travel</a>
-              </div>
-              <button 
-                className="md:hidden text-white"
-                onClick={() => setMenuOpen(!menuOpen)}
-              >
-                <Menu className="w-6 h-6" />
-              </button>
-            </div>
-          </div>
-        </nav>
+        
 
         {/* Hero Content */}
         <div className="flex items-center justify-center min-h-screen text-center text-white px-4">
@@ -135,15 +109,29 @@ const Dashboard = () => {
               Land of Mystical Monasteries and Majestic Mountains
             </p>
             <div className="flex flex-wrap justify-center gap-3 mb-8">
-              <span className="px-4 py-2 border border-white rounded-full text-white bg-white bg-opacity-20 backdrop-blur-sm">
-                Buddhist Heritage
-              </span>
-              <span className="px-4 py-2 border border-white rounded-full text-white bg-white bg-opacity-20 backdrop-blur-sm">
-                Himalayan Kingdom
-              </span>
-              <span className="px-4 py-2 border border-white rounded-full text-white bg-white bg-opacity-20 backdrop-blur-sm">
-                Sacred Monasteries
-              </span>
+              <div className="flex flex-wrap gap-3">
+                <span className="px-5 py-2 border border-cyan-400 rounded-full text-white font-medium 
+                   bg-gradient-to-r from-cyan-500/20 to-blue-700/20 
+                   backdrop-blur-md hover:from-cyan-500/40 hover:to-blue-700/40 
+                   transition-all duration-300 shadow-md hover:shadow-cyan-400/40 cursor-pointer">
+                   Buddhist Heritage
+                 </span>
+
+                 <span className="px-5 py-2 border border-cyan-400 rounded-full text-white font-medium 
+                   bg-gradient-to-r from-indigo-500/20 to-purple-700/20 
+                   backdrop-blur-md hover:from-indigo-500/40 hover:to-purple-700/40 
+                   transition-all duration-300 shadow-md hover:shadow-indigo-400/40 cursor-pointer">
+                    Himalayan Kingdom
+                 </span>
+
+                 <span className="px-5 py-2 border border-cyan-400 rounded-full text-white font-medium 
+                   bg-gradient-to-r from-emerald-500/20 to-teal-700/20 
+                   backdrop-blur-md hover:from-emerald-500/40 hover:to-teal-700/40 
+                   transition-all duration-300 shadow-md hover:shadow-emerald-400/40 cursor-pointer">
+                   Sacred Monasteries
+                  </span>
+              </div>
+
             </div>
             <div className="animate-bounce">
               <ChevronDown className="w-8 h-8 mx-auto" />
@@ -200,7 +188,7 @@ const Dashboard = () => {
           <div>
             <div className="rounded-2xl overflow-hidden shadow-2xl">
               <img 
-                src="/imagesforme/monastrybig.png"
+                src="/imagesforme/BuddhaStatue.jpg"
                 alt="Sikkim Monastery"
                 className="w-full h-96 object-cover"
               />
@@ -281,7 +269,7 @@ const Dashboard = () => {
               </h3>
               <div className="relative bg-gradient-to-br from-blue-400 to-green-400 h-96 rounded-xl overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=400&fit=crop"
+                  src="/imagesforme/Map.png"
                   alt="Sikkim Landscape"
                   className="w-full h-full object-cover opacity-80"
                 />
@@ -336,39 +324,59 @@ const Dashboard = () => {
 
       {/* Cultural Heritage Section */}
       <div className="bg-gradient-to-r from-blue-900 to-purple-900 py-16 text-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12">Living Buddhist Culture</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="bg-white bg-opacity-10 p-6 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center">
-                <Landmark className="w-10 h-10" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Sacred Rituals</h3>
-              <p className="text-gray-300">
-                Daily prayers, butter lamp offerings, and traditional ceremonies maintain spiritual connections across generations.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="bg-white bg-opacity-10 p-6 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center">
-                <Camera className="w-10 h-10" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Sacred Art</h3>
-              <p className="text-gray-300">
-                Ancient thangka paintings, intricate mandalas, and sacred sculptures preserve Buddhist artistic traditions.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="bg-white bg-opacity-10 p-6 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center">
-                <Users className="w-10 h-10" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Monastic Life</h3>
-              <p className="text-gray-300">
-                Over 4,000 monks and nuns dedicate their lives to preserving Buddhist teachings and serving their communities.
-              </p>
-            </div>
-          </div>
+  <div className="max-w-6xl mx-auto px-4">
+    <h2 className="text-4xl font-bold text-center mb-12">Living Buddhist Culture</h2>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      {/* Sacred Rituals */}
+      <div className="text-center">
+        <div className="bg-white bg-opacity-10 p-6 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center overflow-hidden">
+          <img
+            src="/imagesforme/Sacred img.png"   
+            alt="Sacred Rituals"
+            className="w-12 h-12 object-cover rounded-full"
+          />
         </div>
+        <h3 className="text-xl font-bold mb-3">Sacred Rituals</h3>
+        <p className="text-gray-300">
+          Daily prayers, butter lamp offerings, and traditional ceremonies maintain spiritual connections across generations.
+        </p>
       </div>
+
+      {/* Sacred Art */}
+      <div className="text-center">
+        <div className="bg-white bg-opacity-10 p-6 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center overflow-hidden">
+          <img
+            src="/imagesforme/SacredArt.png"   
+            alt="Sacred Art"
+            className="w-12 h-12 object-cover rounded-full"
+          />
+        </div>
+        <h3 className="text-xl font-bold mb-3">Sacred Art</h3>
+        <p className="text-gray-300">
+          Ancient thangka paintings, intricate mandalas, and sacred sculptures preserve Buddhist artistic traditions.
+        </p>
+      </div>
+
+      {/* Monastic Life */}
+      <div className="text-center">
+        <div className="bg-white bg-opacity-10 p-6 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center overflow-hidden">
+          <img
+            src="/imagesforme/MoansticLife.png"   
+            alt="Monastic Life"
+            className="w-12 h-12 object-cover rounded-full"
+          />
+        </div>
+        <h3 className="text-xl font-bold mb-3">Monastic Life</h3>
+        <p className="text-gray-300">
+          Over 4,000 monks and nuns dedicate their lives to preserving Buddhist teachings and serving their communities.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 
       {/* Festival Calendar */}
       <div className="max-w-6xl mx-auto px-4 py-16">
