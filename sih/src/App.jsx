@@ -7,6 +7,7 @@ import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import Navbar from "./components/Navbar";
 import Viewer from './pages/Viewer';
+import Map from './pages/Map';
 
 
 
@@ -20,6 +21,7 @@ function App() {
         
         <Route path = "/dashboard" element = {<Dashboard/>} />
         <Route path = "/viewer" element = {<Viewer/>} />
+        <Route path = "/Map" element = {<Map/>} />
         
         
       </Routes>
