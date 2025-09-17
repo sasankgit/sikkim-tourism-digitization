@@ -16,7 +16,7 @@ export default function Signup() {
       await createUserWithEmailAndPassword(auth, email, password);
       navigate("/dashboard"); // redirect after successful signup
     } catch (err) {
-      setError("Signup failed ❌ (Email may already be in use)");
+      setError("Signup failed (Email may already be in use)");
     }
   };
 
