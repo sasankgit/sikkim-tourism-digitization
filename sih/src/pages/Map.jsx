@@ -17,7 +17,7 @@ const Map = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white relative overflow-hidden">
+    <div className="min-h-screen bg-white relative overflow-hidden" style={{ paddingTop: 80 }}>
       {/* Floating Leaves */}
       {leaves.map(leaf => (
         <div

@@ -21,7 +21,7 @@ function App() {
         
         <Route path = "/dashboard" element = {<Dashboard/>} />
         <Route path = "/viewer" element = {<Viewer/>} />
-        <Route path = "/Map" element = {<Map/>} />
+        <Route path = "/map" element = {<Map/>} />
         
         
       </Routes>

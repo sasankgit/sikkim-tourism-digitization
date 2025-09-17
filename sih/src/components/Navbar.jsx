@@ -1,151 +1,105 @@
 // src/components/Navbar.jsx
-import React, { useState, useEffect } from "react";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Box,
-  IconButton,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
-} from "@mui/material";
-import { Link, useLocation } from "react-router-dom";
-import MenuIcon from "@mui/icons-material/Menu";
-import LandscapeIcon from "@mui/icons-material/Landscape";
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Button } from "./ui/button";
+import { Badge } from "./ui/badge";
+import { Home, Map, Box, Mountain } from "lucide-react";
 
 export default function Navbar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [hover, setHover] = useState(false); 
-  const [scrolled, setScrolled] = useState(false); 
   const location = useLocation();
+  const navigate = useNavigate();
 
-  const navLinks = [
-    { label: "Dashboard", path: "/dashboard" },
-    { label: "Maps", path: "/map" },
-    { label: "3D Viewer", path: "/viewer" },
+  const tabs = [
+    { id: "dashboard", label: "Dashboard", icon: Home, color: "from-green-600 to-blue-600", path: "/dashboard" },
+    { id: "map", label: "Map Explorer", icon: Map, color: "from-blue-600 to-green-600", path: "/map" },
+    { id: "3d", label: "3D Viewer", icon: Box, color: "from-orange-500 to-green-600", path: "/viewer" }
   ];
 
-  const toggleDrawer = () => setMobileOpen(!mobileOpen);
+  const pathname = location.pathname.toLowerCase();
+  const activeTab = pathname.startsWith("/viewer") ? "3d" : pathname.startsWith("/map") ? "map" : "dashboard";
 
-  // detect scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 200) {t
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // decide navbar state
-  const isWhite = hover || scrolled;
+  const onTabChange = (tab) => {
+    const target = tabs.find(t => t.id === tab);
+    if (target) navigate(target.path);
+  };
 
   return (
-    <AppBar
-      position="fixed"
-      elevation={isWhite ? 4 : 0}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      sx={{
-        background: isWhite ? "white" : "transparent",
-        transition: "background 0.3s ease, box-shadow 0.3s ease",
-        color: isWhite ? "black" : "white",
-      }}
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 shadow-sm"
     >
-      <Toolbar>
-        {/* Logo + Title */}
-        <LandscapeIcon sx={{ mr: 1, color: isWhite ? "black" : "#00eaff" }} />
-        <Typography
-          variant="h6"
-          sx={{
-            flexGrow: 1,
-            fontWeight: "bold",
-            color: isWhite ? "black" : "#00eaff",
-            transition: "color 0.3s ease",
-          }}
-        >
-          Sikkim Explorer
-        </Typography>
+      <div className="container mx-auto px-6 py-4">
+        <div className="flex items-center justify-between">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center gap-3"
+          >
+            <div className="flex items-center gap-2">
+              <Mountain className="w-8 h-8 text-green-600" />
+              <div>
+                <h1 className="text-xl text-gray-800">Sikkim Explorer</h1>
+                <p className="text-xs text-gray-500">Sacred Heritage Discovery</p>
+              </div>
+            </div>
+          </motion.div>
 
-        {/* Desktop Menu */}
-        <Box sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}>
-          {navLinks.map((link) => (
-            <Button
-              key={link.path}
-              component={Link}
-              to={link.path}
-              sx={{
-                color:
-                  location.pathname === link.path
-                    ? "#00eaff"
-                    : isWhite
-                    ? "black"
-                    : "white",
-                fontWeight: location.pathname === link.path ? "bold" : "500",
-                textTransform: "none",
-                mx: 1.5,
-                px: 2,
-                borderRadius: "20px",
-                "&:hover": {
-                  background: "rgba(0,0,0,0.05)",
-                  color: "#00eaff",
-                  boxShadow: isWhite ? "0 0 10px #00eaff55" : "none",
-                },
-              }}
-            >
-              {link.label}
-            </Button>
-          ))}
-        </Box>
-
-        {/* Mobile Menu Icon */}
-        <IconButton
-          sx={{ display: { xs: "block", md: "none" }, color: isWhite ? "black" : "white" }}
-          onClick={toggleDrawer}
-        >
-          <MenuIcon />
-        </IconButton>
-
-        {/* Mobile Drawer */}
-        <Drawer
-          anchor="right"
-          open={mobileOpen}
-          onClose={toggleDrawer}
-          PaperProps={{
-            sx: {
-              background: "white",
-              color: "black",
-            },
-          }}
-        >
-          <List sx={{ width: 260 }}>
-            {navLinks.map((link) => (
-              <ListItem
-                button
-                key={link.path}
-                component={Link}
-                to={link.path}
-                onClick={toggleDrawer}
-                sx={{
-                  "&:hover": {
-                    color: "#00eaff",
-                    background: "rgba(0,234,255,0.1)",
-                  },
-                  color: location.pathname === link.path ? "#00eaff" : "black",
-                }}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex items-center gap-2 bg-gray-50 p-1 rounded-2xl border border-gray-200"
+          >
+            {tabs.map((tab, index) => (
+              <motion.div
+                key={tab.id}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="relative"
               >
-                <ListItemText primary={link.label} />
-              </ListItem>
+            <Button
+                  variant={activeTab === tab.id ? "default" : "ghost"}
+                  onClick={() => onTabChange(tab.id)}
+                  className={`relative px-6 py-2 rounded-xl transition-all duration-300 ${
+                    activeTab === tab.id
+                      ? `bg-gradient-to-r ${tab.color} text-white shadow-lg hover:shadow-xl`
+                      : 'text-gray-600 hover:text-gray-800 hover:bg-white'
+                  }`}
+                >
+                  <tab.icon className="w-4 h-4 mr-2" />
+                  {tab.label}
+                  {activeTab === tab.id && (
+                    <motion.div
+                      layoutId="activeTab"
+                      className="absolute inset-0 bg-gradient-to-r from-white/20 to-white/0 rounded-xl"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+            </Button>
+              </motion.div>
             ))}
-          </List>
-        </Drawer>
-      </Toolbar>
-    </AppBar>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex items-center gap-2"
+          >
+            <Badge variant="outline" className="border-green-200 text-green-700 bg-green-50">
+              Educational
+            </Badge>
+            <Badge variant="outline" className="border-blue-200 text-blue-700 bg-blue-50">
+              Cultural
+            </Badge>
+          </motion.div>
+        </div>
+      </div>
+    </motion.div>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import heroVideo from '../hero.mp4';
 import {
   Menu,
   MapPin,
@@ -86,73 +87,41 @@ const Dashboard = () => {
     { icon: <Calendar className="w-6 h-6" />, label: "Statehood", value: "1975" }
   ];
 
-  const backgroundStyle = {
-    backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('/imagesforme/Sunrise_over_Kangchenjunga.jpg')`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundAttachment: 'fixed'
-  };
+  // Video-based hero background handled in JSX using <video>
 
   return (
     <div className="bg-gray-50">
-      {/* Hero Section with Background Image */}
-      <div className="relative min-h-screen" style={backgroundStyle}>
-        
+      {/* Hero Section with Background Video (21:9 aspect) */}
+      <div className="relative w-full pt-[42.857%]">{/* 9/21 = 42.857% */}
+        {/* Background video */}
+        <video
+          src={heroVideo}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover brightness-75"
+        />
+        {/* Removed gradient overlay to eliminate visible gap */}
 
-        {/* Hero Content */}
-        <div className="flex items-center justify-center min-h-screen text-center text-white px-4">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.7)' }}>
-              Discover Sikkim
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 font-light max-w-2xl mx-auto" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.7)' }}>
-              Land of Mystical Monasteries and Majestic Mountains
-            </p>
-            <div className="flex flex-wrap justify-center gap-3 mb-8">
-              <div className="flex flex-wrap gap-3">
-                <span className="px-5 py-2 border border-cyan-400 rounded-full text-white font-medium 
-                   bg-gradient-to-r from-cyan-500/20 to-blue-700/20 
-                   backdrop-blur-md hover:from-cyan-500/40 hover:to-blue-700/40 
-                   transition-all duration-300 shadow-md hover:shadow-cyan-400/40 cursor-pointer">
-                   Buddhist Heritage
-                 </span>
-
-                 <span className="px-5 py-2 border border-cyan-400 rounded-full text-white font-medium 
-                   bg-gradient-to-r from-indigo-500/20 to-purple-700/20 
-                   backdrop-blur-md hover:from-indigo-500/40 hover:to-purple-700/40 
-                   transition-all duration-300 shadow-md hover:shadow-indigo-400/40 cursor-pointer">
-                    Himalayan Kingdom
-                 </span>
-
-                 <span className="px-5 py-2 border border-cyan-400 rounded-full text-white font-medium 
-                   bg-gradient-to-r from-emerald-500/20 to-teal-700/20 
-                   backdrop-blur-md hover:from-emerald-500/40 hover:to-teal-700/40 
-                   transition-all duration-300 shadow-md hover:shadow-emerald-400/40 cursor-pointer">
-                   Sacred Monasteries
-                  </span>
-              </div>
-
-            </div>
-            <div className="animate-bounce">
-              <ChevronDown className="w-8 h-8 mx-auto" />
-            </div>
-          </div>
-        </div>
+        {/* Text overlay removed as requested */}
       </div>
 
       {/* Sikkim Quick Facts */}
       <div className="max-w-6xl mx-auto px-4 py-12 -mt-16 relative z-10">
-        <div className="bg-white rounded-2xl shadow-2xl p-8">
-          <h2 className="text-4xl font-bold text-center mb-8 text-blue-900">Sikkim at a Glance</h2>
+         <div className="bg-white rounded-2xl shadow-2xl p-8 transition-all duration-800 hover:shadow-3xl hover:scale-102" style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.320, 1)' }}>
+           <h2 className="text-4xl font-bold text-center mb-8 text-blue-900 transition-all duration-500">Sikkim at a Glance</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {sikkimFacts.map((fact, index) => (
-              <div key={index} className="flex items-center p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl">
-                <div className="bg-blue-500 p-3 rounded-full mr-4 text-white">
+               <div key={index} className="flex items-center p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl transition-all duration-700 hover:scale-105 hover:-translate-y-1 hover:shadow-lg group" style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.320, 1)', transitionDelay: `${index * 75}ms` }}>
+                <div className="bg-blue-500 p-3 rounded-full mr-4 text-white transition-all duration-600 group-hover:scale-110 group-hover:bg-blue-600 group-hover:shadow-lg">
+                  <div className="transition-transform duration-500 group-hover:scale-110">
                   {fact.icon}
+                  </div>
                 </div>
                 <div>
-                  <p className="text-gray-600 text-sm">{fact.label}</p>
-                  <p className="font-bold text-lg text-gray-900">{fact.value}</p>
+                  <p className="text-gray-600 text-sm transition-colors duration-500 group-hover:text-gray-700">{fact.label}</p>
+                  <p className="font-bold text-lg text-gray-900 transition-all duration-500 group-hover:text-blue-700 group-hover:scale-105">{fact.value}</p>
                 </div>
               </div>
             ))}
@@ -198,56 +167,61 @@ const Dashboard = () => {
       </div>
 
       {/* Monasteries Section */}
-      <div id="monasteries" className="bg-gray-100 py-16">
+       <div id="monasteries" className="bg-gray-100 py-16 transition-all duration-500">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12 text-blue-900">
+           <h2 className="text-4xl font-bold text-center mb-12 text-blue-900 transition-all duration-500">
             Sacred Monasteries of Sikkim
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {monasteries.map((monastery, index) => (
               <div 
                 key={index}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+                 className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:scale-105 hover:-translate-y-2 transition-all duration-1000 ease-out group"
+                 style={{ 
+                   transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.320, 1)',
+                   transitionDelay: `${index * 50}ms`
+                 }}
               >
                 <div className="relative">
                   <img
                     src={monastery.image}
                     alt={monastery.name}
-                    className="w-full h-64 object-cover"
+                     className="w-full h-64 object-cover transition-all duration-1200 group-hover:scale-110 group-hover:brightness-110"
+                     style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.320, 1)' }}
                   />
-                  <div className="absolute top-4 right-4 bg-white bg-opacity-90 px-3 py-1 rounded-full">
-                    <span className="text-sm font-medium text-gray-700">{monastery.founded}</span>
+                  <div className="absolute top-4 right-4 bg-white bg-opacity-90 px-3 py-1 rounded-full transition-all duration-800 group-hover:bg-opacity-100 group-hover:scale-110 group-hover:shadow-md">
+                    <span className="text-sm font-medium text-gray-700 transition-colors duration-600">{monastery.founded}</span>
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-3 text-gray-900">{monastery.name}</h3>
-                  <p className="text-gray-600 mb-4 leading-relaxed">{monastery.description}</p>
+                <div className="p-6 transition-all duration-800 group-hover:bg-gray-50">
+                  <h3 className="text-2xl font-bold mb-3 text-gray-900 transition-all duration-600 group-hover:text-blue-800 group-hover:scale-105">{monastery.name}</h3>
+                  <p className="text-gray-600 mb-4 leading-relaxed transition-all duration-600 group-hover:text-gray-700">{monastery.description}</p>
                   
                   <div className="flex flex-wrap gap-2 mb-4">
-                    <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm flex items-center">
-                      <MapPin className="w-3 h-3 mr-1" />
+                    <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm flex items-center transition-all duration-500 group-hover:bg-blue-200 group-hover:scale-105">
+                      <MapPin className="w-3 h-3 mr-1 transition-transform duration-500 group-hover:scale-110" />
                       {monastery.location}
                     </span>
-                    <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm flex items-center">
-                      <Mountain className="w-3 h-3 mr-1" />
+                    <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm flex items-center transition-all duration-500 group-hover:bg-green-200 group-hover:scale-105">
+                      <Mountain className="w-3 h-3 mr-1 transition-transform duration-500 group-hover:scale-110" />
                       {monastery.elevation}
                     </span>
                   </div>
 
-                  <div className="border-t border-gray-200 pt-4 mt-4">
+                  <div className="border-t border-gray-200 pt-4 mt-4 transition-all duration-600 group-hover:border-gray-300">
                     <div className="grid grid-cols-2 gap-4 text-center">
-                      <div>
-                        <p className="text-gray-500 text-xs uppercase tracking-wide">Founded</p>
-                        <p className="font-bold text-lg">{monastery.founded}</p>
+                      <div className="transition-all duration-500 group-hover:scale-105">
+                        <p className="text-gray-500 text-xs uppercase tracking-wide transition-colors duration-500 group-hover:text-gray-600">Founded</p>
+                        <p className="font-bold text-lg transition-all duration-500 group-hover:text-blue-700 group-hover:scale-110">{monastery.founded}</p>
                       </div>
-                      <div>
-                        <p className="text-gray-500 text-xs uppercase tracking-wide">Visitors</p>
-                        <p className="font-bold text-lg">{monastery.visitors}</p>
+                      <div className="transition-all duration-500 group-hover:scale-105">
+                        <p className="text-gray-500 text-xs uppercase tracking-wide transition-colors duration-500 group-hover:text-gray-600">Visitors</p>
+                        <p className="font-bold text-lg transition-all duration-500 group-hover:text-green-700 group-hover:scale-110">{monastery.visitors}</p>
                       </div>
                     </div>
-                    <div className="mt-4 p-3 bg-gray-50 rounded-lg">
-                      <p className="text-sm text-gray-700">
-                        <strong>Special:</strong> {monastery.speciality}
+                    <div className="mt-4 p-3 bg-gray-50 rounded-lg transition-all duration-600 group-hover:bg-gray-100 group-hover:shadow-md">
+                      <p className="text-sm text-gray-700 transition-colors duration-500 group-hover:text-gray-800">
+                        <strong className="transition-colors duration-500 group-hover:text-blue-700">Special:</strong> {monastery.speciality}
                       </p>
                     </div>
                   </div>
@@ -262,9 +236,9 @@ const Dashboard = () => {
       <div className="max-w-6xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h3 className="text-2xl font-bold mb-4 text-blue-900 flex items-center">
-                <Map className="w-6 h-6 mr-3" />
+             <div className="bg-white rounded-2xl shadow-lg p-6 transition-all duration-800 hover:shadow-xl hover:scale-102 hover:-translate-y-1 group" style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.320, 1)' }}>
+               <h3 className="text-2xl font-bold mb-4 text-blue-900 flex items-center transition-colors duration-500 group-hover:text-blue-700">
+                 <Map className="w-6 h-6 mr-3 transition-transform duration-500 group-hover:scale-110" />
                 Geographic Overview
               </h3>
               <div className="relative bg-gradient-to-br from-blue-400 to-green-400 h-96 rounded-xl overflow-hidden">
@@ -278,7 +252,7 @@ const Dashboard = () => {
                   <div className="text-center text-white">
                     <h4 className="text-3xl font-bold mb-2">Interactive Map</h4>
                     <p className="text-lg">Exploring the Sacred Geography</p>
-                    <button className="mt-4 px-6 py-2 bg-white bg-opacity-20 backdrop-blur-sm border border-white rounded-full hover:bg-opacity-30 transition-all">
+                     <button className="mt-4 px-6 py-2 bg-white bg-opacity-20 backdrop-blur-sm border border-white rounded-full hover:bg-opacity-30 hover:scale-110 transform transition-all duration-600 ease-out" style={{ transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)' }}>
                       View Full Map
                     </button>
                   </div>
@@ -288,8 +262,8 @@ const Dashboard = () => {
           </div>
           
           <div>
-            <div className="bg-white rounded-2xl shadow-lg p-6 h-full">
-              <h3 className="text-xl font-bold mb-4 text-blue-900">Districts of Sikkim</h3>
+             <div className="bg-white rounded-2xl shadow-lg p-6 h-full transition-all duration-800 hover:shadow-xl hover:scale-102 hover:-translate-y-1 group" style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.320, 1)' }}>
+               <h3 className="text-xl font-bold mb-4 text-blue-900 transition-colors duration-500 group-hover:text-blue-700">Districts of Sikkim</h3>
               <div className="space-y-4">
                 {[
                   { name: 'East Sikkim', capital: 'Gangtok', monasteries: 45 },
@@ -297,23 +271,23 @@ const Dashboard = () => {
                   { name: 'North Sikkim', capital: 'Mangan', monasteries: 38 },
                   { name: 'South Sikkim', capital: 'Namchi', monasteries: 41 }
                 ].map((district, index) => (
-                  <div key={index} className="p-3 bg-gray-50 rounded-lg">
+                   <div key={index} className="p-3 bg-gray-50 rounded-lg transition-all duration-600 hover:bg-gray-100 hover:scale-105 hover:shadow-md" style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.320, 1)', transitionDelay: `${index * 50}ms` }}>
                     <div className="flex items-center mb-2">
-                      <MapPin className="w-4 h-4 text-blue-500 mr-2" />
-                      <h4 className="font-semibold text-gray-900">{district.name}</h4>
+                      <MapPin className="w-4 h-4 text-blue-500 mr-2 transition-all duration-400 hover:scale-110 hover:text-blue-600" />
+                      <h4 className="font-semibold text-gray-900 transition-colors duration-400 hover:text-blue-700">{district.name}</h4>
                     </div>
-                    <p className="text-sm text-gray-600">Capital: {district.capital}</p>
-                    <p className="text-sm text-gray-600">Monasteries: {district.monasteries}</p>
+                    <p className="text-sm text-gray-600 transition-colors duration-400 hover:text-gray-700">Capital: {district.capital}</p>
+                    <p className="text-sm text-gray-600 transition-colors duration-400 hover:text-gray-700">Monasteries: {district.monasteries}</p>
                   </div>
                 ))}
               </div>
               
-              <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
-                <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
-                  <Info className="w-4 h-4 mr-2" />
+              <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg transition-all duration-600 hover:from-blue-100 hover:to-purple-100 hover:scale-105 hover:shadow-md" style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.320, 1)' }}>
+                <h4 className="font-semibold text-gray-900 mb-2 flex items-center transition-colors duration-500 hover:text-blue-700">
+                  <Info className="w-4 h-4 mr-2 transition-all duration-400 hover:scale-110 hover:text-blue-600" />
                   Did You Know?
                 </h4>
-                <p className="text-sm text-gray-700">
+                <p className="text-sm text-gray-700 transition-colors duration-400 hover:text-gray-800">
                   Sikkim is the second smallest state in India but has the highest density of monasteries per square kilometer in the country.
                 </p>
               </div>
@@ -323,52 +297,52 @@ const Dashboard = () => {
       </div>
 
       {/* Cultural Heritage Section */}
-      <div className="bg-gradient-to-r from-blue-900 to-purple-900 py-16 text-white">
+       <div className="bg-gradient-to-r from-blue-900 to-purple-900 py-16 text-white transition-all duration-800">
   <div className="max-w-6xl mx-auto px-4">
-    <h2 className="text-4xl font-bold text-center mb-12">Living Buddhist Culture</h2>
+     <h2 className="text-4xl font-bold text-center mb-12 transition-all duration-500">Living Buddhist Culture</h2>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       
       {/* Sacred Rituals */}
-      <div className="text-center">
-        <div className="bg-white bg-opacity-10 p-6 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center overflow-hidden">
+       <div className="text-center transition-all duration-700 hover:scale-105 hover:-translate-y-2 group" style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.320, 1)' }}>
+        <div className="bg-white bg-opacity-10 p-6 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center overflow-hidden transition-all duration-600 group-hover:bg-opacity-20 group-hover:scale-110 group-hover:shadow-lg">
           <img
             src="/imagesforme/Sacred img.png"   
             alt="Sacred Rituals"
-            className="w-12 h-12 object-cover rounded-full"
+            className="w-12 h-12 object-cover rounded-full transition-transform duration-600 group-hover:scale-110"
           />
         </div>
-        <h3 className="text-xl font-bold mb-3">Sacred Rituals</h3>
-        <p className="text-gray-300">
+        <h3 className="text-xl font-bold mb-3 transition-all duration-500 group-hover:text-blue-200 group-hover:scale-105">Sacred Rituals</h3>
+        <p className="text-gray-300 transition-colors duration-500 group-hover:text-gray-200">
           Daily prayers, butter lamp offerings, and traditional ceremonies maintain spiritual connections across generations.
         </p>
       </div>
 
       {/* Sacred Art */}
-      <div className="text-center">
-        <div className="bg-white bg-opacity-10 p-6 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center overflow-hidden">
+      <div className="text-center transition-all duration-700 hover:scale-105 hover:-translate-y-2 group" style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.320, 1)', transitionDelay: '100ms' }}>
+        <div className="bg-white bg-opacity-10 p-6 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center overflow-hidden transition-all duration-600 group-hover:bg-opacity-20 group-hover:scale-110 group-hover:shadow-lg">
           <img
             src="/imagesforme/SacredArt.png"   
             alt="Sacred Art"
-            className="w-12 h-12 object-cover rounded-full"
+            className="w-12 h-12 object-cover rounded-full transition-transform duration-600 group-hover:scale-110"
           />
         </div>
-        <h3 className="text-xl font-bold mb-3">Sacred Art</h3>
-        <p className="text-gray-300">
+        <h3 className="text-xl font-bold mb-3 transition-all duration-500 group-hover:text-purple-200 group-hover:scale-105">Sacred Art</h3>
+        <p className="text-gray-300 transition-colors duration-500 group-hover:text-gray-200">
           Ancient thangka paintings, intricate mandalas, and sacred sculptures preserve Buddhist artistic traditions.
         </p>
       </div>
 
       {/* Monastic Life */}
-      <div className="text-center">
-        <div className="bg-white bg-opacity-10 p-6 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center overflow-hidden">
+      <div className="text-center transition-all duration-700 hover:scale-105 hover:-translate-y-2 group" style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.320, 1)', transitionDelay: '200ms' }}>
+        <div className="bg-white bg-opacity-10 p-6 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center overflow-hidden transition-all duration-600 group-hover:bg-opacity-20 group-hover:scale-110 group-hover:shadow-lg">
           <img
             src="/imagesforme/MoansticLife.png"   
             alt="Monastic Life"
-            className="w-12 h-12 object-cover rounded-full"
+            className="w-12 h-12 object-cover rounded-full transition-transform duration-600 group-hover:scale-110"
           />
         </div>
-        <h3 className="text-xl font-bold mb-3">Monastic Life</h3>
-        <p className="text-gray-300">
+        <h3 className="text-xl font-bold mb-3 transition-all duration-500 group-hover:text-green-200 group-hover:scale-105">Monastic Life</h3>
+        <p className="text-gray-300 transition-colors duration-500 group-hover:text-gray-200">
           Over 4,000 monks and nuns dedicate their lives to preserving Buddhist teachings and serving their communities.
         </p>
       </div>
@@ -379,8 +353,8 @@ const Dashboard = () => {
 
 
       {/* Festival Calendar */}
-      <div className="max-w-6xl mx-auto px-4 py-16">
-        <h2 className="text-4xl font-bold text-center mb-12 text-blue-900">Sacred Festivals</h2>
+       <div className="max-w-6xl mx-auto px-4 py-16 transition-all duration-500">
+         <h2 className="text-4xl font-bold text-center mb-12 text-blue-900 transition-all duration-500">Sacred Festivals</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
             { name: "Losar", month: "February", description: "Tibetan New Year with colorful Cham dances" },
@@ -390,7 +364,7 @@ const Dashboard = () => {
             { name: "Diwali", month: "October/November", description: "Festival of lights with Buddhist influence" },
             { name: "Lhabab Duchen", month: "November", description: "Buddha's descent from heaven celebration" }
           ].map((festival, index) => (
-            <div key={index} className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+             <div key={index} className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl hover:scale-105 transform transition-all duration-700 ease-out" style={{ transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)' }}>
               <div className="flex items-center mb-3">
                 <Calendar className="w-5 h-5 text-blue-500 mr-2" />
                 <span className="text-blue-600 font-semibold">{festival.month}</span>
@@ -431,7 +405,7 @@ const Dashboard = () => {
               <p className="text-gray-300 mb-4">
                 Experience the tranquility of the Himalayas and immerse yourself in centuries-old Buddhist traditions.
               </p>
-              <button className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-full transition-colors">
+               <button className="bg-blue-600 hover:bg-blue-700 hover:scale-110 transform px-6 py-2 rounded-full transition-all duration-600 ease-out" style={{ transitionTimingFunction: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)' }}>
                 Start Planning
               </button>
             </div>
