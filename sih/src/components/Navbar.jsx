@@ -7,6 +7,11 @@ import { Badge } from "./ui/badge";
 import { Home, Map, Box, Mountain } from "lucide-react";
 
 export default function Navbar() {
+
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [hover, setHover] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -14,6 +19,7 @@ export default function Navbar() {
     { id: "dashboard", label: "Dashboard", icon: Home, color: "from-green-600 to-blue-600", path: "/dashboard" },
     { id: "map", label: "Map Explorer", icon: Map, color: "from-blue-600 to-green-600", path: "/map" },
     { id: "3d", label: "3D Viewer", icon: Box, color: "from-orange-500 to-green-600", path: "/viewer" }
+
   ];
 
   const pathname = location.pathname.toLowerCase();
@@ -82,6 +88,7 @@ export default function Navbar() {
                   )}
             </Button>
               </motion.div>
+
             ))}
           </motion.div>
 

@@ -1,23 +1,21 @@
-import React from 'react'
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "leaflet/dist/leaflet.css";
 
-
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+// Pages
 import Dashboard from "./pages/Dashboard";
 import Navbar from "./components/Navbar";
-import Viewer from './pages/Viewer';
-import Map from './pages/Map';
-
-
+import Viewer from "./pages/Viewer";
+import SikkimMap from "./pages/SikkimMap"; 
 
 function App() {
   return (
     <Router>
       <Navbar />
       <Routes>
-        {/* Default Route → Login Page */}
+        {/* Default Route → Dashboard */}
         <Route path="/" element={<Dashboard />} />
+
         
         <Route path = "/dashboard" element = {<Dashboard/>} />
         <Route path = "/viewer" element = {<Viewer/>} />
@@ -29,4 +27,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
