@@ -19,7 +19,6 @@
     "@tailwindcss/vite": "^4.1.13",
     "firebase": "^12.2.1",
     "framer-motion": "^12.23.12",
-    "leaflet": "^1.9.4",
     "lucide-react": "^0.544.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
