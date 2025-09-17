@@ -26,6 +26,7 @@ export default function Navbar() {
     { label: "Dashboard", path: "/dashboard" },
     { label: "Map", path: "/map" },
     { label: "3D Viewer", path: "/viewer" },
+    { label: "Prayer Wheel", path: "/prayer-wheel" },
   ];
 
   const toggleDrawer = () => setMobileOpen(!mobileOpen);
@@ -53,26 +54,26 @@ export default function Navbar() {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       sx={{
-        background: isWhite
-          ? "rgba(255, 255, 255, 0.75)" // semi-transparent
+        background: scrolled
+          ? "rgba(255, 255, 255, 0.75)" // semi-transparent only on scroll
           : "transparent",
-        backdropFilter: isWhite ? "blur(12px)" : "none", // blur effect
-        WebkitBackdropFilter: isWhite ? "blur(12px)" : "none", // Safari support
+        backdropFilter: scrolled ? "blur(12px)" : "none", // blur effect only on scroll
+        WebkitBackdropFilter: scrolled ? "blur(12px)" : "none", // Safari support
         transition: "background 0.3s ease, box-shadow 0.3s ease",
-        color: isWhite ? "black" : "white",
+        color: scrolled ? "black" : "white",
       }}
     >
       <Toolbar>
         {/* Logo + Title */}
         <LandscapeIcon
-          sx={{ mr: 1, color: isWhite ? "black" : "#00eaff" }}
+          sx={{ mr: 1, color: scrolled ? "black" : "white" }}
         />
         <Typography
           variant="h6"
           sx={{
             flexGrow: 1,
             fontWeight: "bold",
-            color: isWhite ? "black" : "#00eaff",
+            color: scrolled ? "black" : "white",
             transition: "color 0.3s ease",
           }}
         >
@@ -91,8 +92,8 @@ export default function Navbar() {
                 sx={{
                   position: "relative",
                   color: isActive
-                    ? "#00eaff"
-                    : isWhite
+                    ? "#f59e0b"
+                    : scrolled
                     ? "black"
                     : "white",
                   fontWeight: isActive ? "bold" : "500",
@@ -102,8 +103,8 @@ export default function Navbar() {
                   borderRadius: "20px",
                   "&:hover": {
                     background: "rgba(0,0,0,0.05)",
-                    color: "#00eaff",
-                    boxShadow: isWhite ? "0 0 10px #00eaff55" : "none",
+                    color: "#f59e0b",
+                    boxShadow: scrolled ? "0 0 10px #f59e0b55" : "none",
                   },
                   // underline animation
                   "&::after": {
@@ -113,7 +114,7 @@ export default function Navbar() {
                     bottom: 0,
                     width: isActive ? "100%" : "0%",
                     height: "2px",
-                    backgroundColor: "#00eaff",
+                    backgroundColor: "#f59e0b",
                     transition: "width 0.3s ease-in-out",
                   },
                   "&:hover::after": {
@@ -131,7 +132,7 @@ export default function Navbar() {
         <IconButton
           sx={{
             display: { xs: "block", md: "none" },
-            color: isWhite ? "black" : "white",
+            color: scrolled ? "black" : "white",
           }}
           onClick={toggleDrawer}
         >
@@ -162,10 +163,10 @@ export default function Navbar() {
                 onClick={toggleDrawer}
                 sx={{
                   "&:hover": {
-                    color: "#00eaff",
-                    background: "rgba(0,234,255,0.1)",
+                    color: "#f59e0b",
+                    background: "rgba(245,158,11,0.1)",
                   },
-                  color: location.pathname === link.path ? "#00eaff" : "black",
+                  color: location.pathname === link.path ? "#f59e0b" : "black",
                 }}
               >
                 <ListItemText primary={link.label} />

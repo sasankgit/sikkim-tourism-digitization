@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Menu,
   MapPin,
@@ -102,7 +103,7 @@ const Dashboard = () => {
         {/* Hero Content */}
         <div className="flex items-center justify-center min-h-screen text-center text-white px-4">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.7)' }}>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.7)', fontFamily: 'Playfair Display, serif', letterSpacing: '-0.01em' }}>
               Discover Sikkim
             </h1>
             <p className="text-xl md:text-2xl mb-8 font-light max-w-2xl mx-auto" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.7)' }}>
@@ -110,30 +111,27 @@ const Dashboard = () => {
             </p>
             <div className="flex flex-wrap justify-center gap-3 mb-8">
               <div className="flex flex-wrap gap-3">
-                <span className="px-5 py-2 border border-cyan-400 rounded-full text-white font-medium 
-                   bg-gradient-to-r from-cyan-500/20 to-blue-700/20 
-                   backdrop-blur-md hover:from-cyan-500/40 hover:to-blue-700/40 
-                   transition-all duration-300 shadow-md hover:shadow-cyan-400/40 cursor-pointer">
+                <span className="px-5 py-2 border border-white/20 rounded-full text-white font-medium 
+                   bg-white/10 hover:bg-white/15 
+                   backdrop-blur-md transition-all duration-300 cursor-pointer">
                    Buddhist Heritage
                  </span>
 
-                 <span className="px-5 py-2 border border-cyan-400 rounded-full text-white font-medium 
-                   bg-gradient-to-r from-indigo-500/20 to-purple-700/20 
-                   backdrop-blur-md hover:from-indigo-500/40 hover:to-purple-700/40 
-                   transition-all duration-300 shadow-md hover:shadow-indigo-400/40 cursor-pointer">
+                 <span className="px-5 py-2 border border-white/20 rounded-full text-white font-medium 
+                   bg-white/10 hover:bg-white/15 
+                   backdrop-blur-md transition-all duration-300 cursor-pointer">
                     Himalayan Kingdom
                  </span>
 
-                 <span className="px-5 py-2 border border-cyan-400 rounded-full text-white font-medium 
-                   bg-gradient-to-r from-emerald-500/20 to-teal-700/20 
-                   backdrop-blur-md hover:from-emerald-500/40 hover:to-teal-700/40 
-                   transition-all duration-300 shadow-md hover:shadow-emerald-400/40 cursor-pointer">
+                 <span className="px-5 py-2 border border-white/20 rounded-full text-white font-medium 
+                   bg-white/10 hover:bg-white/15 
+                   backdrop-blur-md transition-all duration-300 cursor-pointer">
                    Sacred Monasteries
                   </span>
               </div>
 
             </div>
-            <div className="animate-bounce">
+            <div className="animate-fade-in" style={{animationDelay:'0.3s'}}>
               <ChevronDown className="w-8 h-8 mx-auto" />
             </div>
           </div>
@@ -142,17 +140,17 @@ const Dashboard = () => {
 
       {/* Sikkim Quick Facts */}
       <div className="max-w-6xl mx-auto px-4 py-12 -mt-16 relative z-10">
-        <div className="bg-white rounded-2xl shadow-2xl p-8">
-          <h2 className="text-4xl font-bold text-center mb-8 text-blue-900">Sikkim at a Glance</h2>
+        <div className="bg-white rounded-2xl shadow-xl p-8">
+          <h2 className="text-4xl font-bold text-center mb-8 text-slate-900" style={{fontFamily:'Playfair Display, serif'}}>Sikkim at a Glance</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {sikkimFacts.map((fact, index) => (
-              <div key={index} className="flex items-center p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl">
-                <div className="bg-blue-500 p-3 rounded-full mr-4 text-white">
+              <div key={index} className="flex items-center p-4 bg-slate-50 rounded-xl border border-slate-100">
+                <div className="bg-amber-500 p-3 rounded-full mr-4 text-white">
                   {fact.icon}
                 </div>
                 <div>
                   <p className="text-gray-600 text-sm">{fact.label}</p>
-                  <p className="font-bold text-lg text-gray-900">{fact.value}</p>
+                  <p className="font-semibold text-lg text-gray-900">{fact.value}</p>
                 </div>
               </div>
             ))}
@@ -164,7 +162,7 @@ const Dashboard = () => {
       <div className={`max-w-6xl mx-auto px-4 py-12 transition-all duration-1000 ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-4xl font-bold mb-6 text-blue-900">Ancient Heritage of Sikkim</h2>
+            <h2 className="text-4xl font-bold mb-6 text-slate-900" style={{fontFamily:'Playfair Display, serif'}}>Ancient Heritage of Sikkim</h2>
             <p className="text-lg text-gray-700 mb-6 leading-relaxed">
               Sikkim, once an independent kingdom, has a rich Buddhist heritage dating back to the 8th century. 
               The state was ruled by the Namgyal dynasty for over 300 years until it became part of India in 1975.
@@ -175,11 +173,11 @@ const Dashboard = () => {
               and religious artifacts for centuries.
             </p>
             <div className="flex flex-wrap gap-3">
-              <span className="px-4 py-2 bg-blue-100 text-blue-800 rounded-full font-medium flex items-center">
+              <span className="px-4 py-2 bg-amber-100 text-amber-800 rounded-full font-medium flex items-center">
                 <Calendar className="w-4 h-4 mr-2" />
                 800+ Years of Buddhism
               </span>
-              <span className="px-4 py-2 bg-purple-100 text-purple-800 rounded-full font-medium flex items-center">
+              <span className="px-4 py-2 bg-teal-100 text-teal-800 rounded-full font-medium flex items-center">
                 <Landmark className="w-4 h-4 mr-2" />
                 Nyingma & Kagyu Traditions
               </span>
@@ -191,6 +189,8 @@ const Dashboard = () => {
                 src="/imagesforme/BuddhaStatue.jpg"
                 alt="Sikkim Monastery"
                 className="w-full h-96 object-cover"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
@@ -200,35 +200,37 @@ const Dashboard = () => {
       {/* Monasteries Section */}
       <div id="monasteries" className="bg-gray-100 py-16">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12 text-blue-900">
+          <h2 className="text-4xl font-bold text-center mb-12 text-slate-900" style={{fontFamily:'Playfair Display, serif'}}>
             Sacred Monasteries of Sikkim
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {monasteries.map((monastery, index) => (
               <div 
                 key={index}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300"
               >
                 <div className="relative">
                   <img
                     src={monastery.image}
                     alt={monastery.name}
                     className="w-full h-64 object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute top-4 right-4 bg-white bg-opacity-90 px-3 py-1 rounded-full">
                     <span className="text-sm font-medium text-gray-700">{monastery.founded}</span>
                   </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-3 text-gray-900">{monastery.name}</h3>
+                  <h3 className="text-2xl font-semibold mb-3 text-gray-900">{monastery.name}</h3>
                   <p className="text-gray-600 mb-4 leading-relaxed">{monastery.description}</p>
                   
                   <div className="flex flex-wrap gap-2 mb-4">
-                    <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm flex items-center">
+                    <span className="px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-sm flex items-center">
                       <MapPin className="w-3 h-3 mr-1" />
                       {monastery.location}
                     </span>
-                    <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm flex items-center">
+                    <span className="px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-sm flex items-center">
                       <Mountain className="w-3 h-3 mr-1" />
                       {monastery.elevation}
                     </span>
@@ -263,24 +265,26 @@ const Dashboard = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h3 className="text-2xl font-bold mb-4 text-blue-900 flex items-center">
-                <Map className="w-6 h-6 mr-3" />
+              <h3 className="text-2xl font-semibold mb-4 text-slate-900 flex items-center">
+                <Map className="w-6 h-6 mr-3 text-amber-600" />
                 Geographic Overview
               </h3>
-              <div className="relative bg-gradient-to-br from-blue-400 to-green-400 h-96 rounded-xl overflow-hidden">
+              <div className="relative bg-gradient-to-br from-amber-400 to-emerald-400 h-96 rounded-xl overflow-hidden">
                 <img 
                   src="/imagesforme/Map.png"
                   alt="Sikkim Landscape"
                   className="w-full h-full object-cover opacity-80"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center text-white">
                     <h4 className="text-3xl font-bold mb-2">Interactive Map</h4>
                     <p className="text-lg">Exploring the Sacred Geography</p>
-                    <button className="mt-4 px-6 py-2 bg-white bg-opacity-20 backdrop-blur-sm border border-white rounded-full hover:bg-opacity-30 transition-all">
+                    <Link to="/map" className="inline-block mt-4 px-6 py-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full hover:bg-white/30 transition-all">
                       View Full Map
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -289,7 +293,7 @@ const Dashboard = () => {
           
           <div>
             <div className="bg-white rounded-2xl shadow-lg p-6 h-full">
-              <h3 className="text-xl font-bold mb-4 text-blue-900">Districts of Sikkim</h3>
+              <h3 className="text-xl font-semibold mb-4 text-slate-900">Districts of Sikkim</h3>
               <div className="space-y-4">
                 {[
                   { name: 'East Sikkim', capital: 'Gangtok', monasteries: 45 },
@@ -299,7 +303,7 @@ const Dashboard = () => {
                 ].map((district, index) => (
                   <div key={index} className="p-3 bg-gray-50 rounded-lg">
                     <div className="flex items-center mb-2">
-                      <MapPin className="w-4 h-4 text-blue-500 mr-2" />
+                      <MapPin className="w-4 h-4 text-amber-600 mr-2" />
                       <h4 className="font-semibold text-gray-900">{district.name}</h4>
                     </div>
                     <p className="text-sm text-gray-600">Capital: {district.capital}</p>
@@ -373,6 +377,16 @@ const Dashboard = () => {
         </p>
       </div>
 
+    </div>
+    {/* Prayer Wheel Link */}
+    <div className="mt-16 text-center">
+      <Link 
+        to="/prayer-wheel"
+        className="inline-block bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-2xl px-8 py-4 transition-all duration-300 hover:scale-105"
+      >
+        <h3 className="text-2xl font-semibold mb-2">Experience the Prayer Wheel</h3>
+        <p className="text-white/80">Spin the digital prayer wheel and send blessings into the world</p>
+      </Link>
     </div>
   </div>
 </div>
