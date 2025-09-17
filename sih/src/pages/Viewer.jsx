@@ -125,7 +125,7 @@ export default function InteractiveViewer() {
         </button>
       )}
 
-      <Canvas camera={{ position: [10, 5, 15], fov: 45 }}>
+      <Canvas camera={{ position: [10, 100, 150], fov: 45 }}>
         <ambientLight intensity={0.7} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
         <OrbitControls enableDamping={true} enabled={true} />
