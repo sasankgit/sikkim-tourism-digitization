@@ -15,6 +15,8 @@ import {
   Info,
   ChevronDown
 } from 'lucide-react';
+import { HoverSlider, TextStaggerHover, HoverSliderImageWrap, HoverSliderImage } from '../components/HoverSlider';
+import { ProgressiveBlur } from '../components/ProgressiveBlur';
 
 const Dashboard = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -32,17 +34,6 @@ const Dashboard = () => {
   }, []);
 
   const monasteries = [
-    {
-      name: "Rumtek Monastery",
-      location: "East Sikkim",
-      elevation: "1,550m",
-      founded: "1740",
-      description: "The largest monastery in Sikkim and seat of the Karma Kagyu lineage of Tibetan Buddhism",
-      image: "/imagesforme/Rumtek Monastery.png",
-      significance: "Golden Stupa",
-      visitors: "50,000+ annually",
-      speciality: "Houses the most sacred relics and maintains 300+ monks"
-    },
     {
       name: "Pemayangtse Monastery",
       location: "West Sikkim",
@@ -109,19 +100,19 @@ const Dashboard = () => {
 
       {/* Sikkim Quick Facts */}
       <div className="max-w-6xl mx-auto px-4 py-12 -mt-16 relative z-10">
-         <div className="bg-white rounded-2xl shadow-2xl p-8 transition-all duration-800 hover:shadow-3xl hover:scale-102" style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.320, 1)' }}>
-           <h2 className="text-4xl font-bold text-center mb-8 text-blue-900 transition-all duration-500">Sikkim at a Glance</h2>
+        <div className="bg-white rounded-2xl shadow-2xl p-8">
+          <h2 className="text-4xl font-bold text-center mb-8 text-blue-900">Sikkim at a Glance</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {sikkimFacts.map((fact, index) => (
-               <div key={index} className="flex items-center p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl transition-all duration-700 hover:scale-105 hover:-translate-y-1 hover:shadow-lg group" style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.320, 1)', transitionDelay: `${index * 75}ms` }}>
-                <div className="bg-blue-500 p-3 rounded-full mr-4 text-white transition-all duration-600 group-hover:scale-110 group-hover:bg-blue-600 group-hover:shadow-lg">
-                  <div className="transition-transform duration-500 group-hover:scale-110">
+              <div key={index} className="flex items-center p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl">
+                <div className="bg-blue-500 p-3 rounded-full mr-4 text-white">
+                  <div>
                   {fact.icon}
                   </div>
                 </div>
                 <div>
-                  <p className="text-gray-600 text-sm transition-colors duration-500 group-hover:text-gray-700">{fact.label}</p>
-                  <p className="font-bold text-lg text-gray-900 transition-all duration-500 group-hover:text-blue-700 group-hover:scale-105">{fact.value}</p>
+                  <p className="text-gray-600 text-sm">{fact.label}</p>
+                  <p className="font-bold text-lg text-gray-900">{fact.value}</p>
                 </div>
               </div>
             ))}
@@ -166,71 +157,97 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Monasteries Section */}
-       <div id="monasteries" className="bg-gray-100 py-16 transition-all duration-500">
+      {/* Monasteries Section with Hover Slider */}
+      <div id="monasteries" className="bg-gray-100 py-16 transition-all duration-500">
         <div className="max-w-7xl mx-auto px-4">
-           <h2 className="text-4xl font-bold text-center mb-12 text-blue-900 transition-all duration-500">
+          <h2 className="text-4xl font-bold text-center mb-16 text-blue-900 transition-all duration-500">
             Sacred Monasteries of Sikkim
           </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          
+          <HoverSlider className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Text Side - Left (Only Names) */}
+            <div className="space-y-8">
             {monasteries.map((monastery, index) => (
-              <div 
-                key={index}
-                 className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:scale-105 hover:-translate-y-2 transition-all duration-1000 ease-out group"
-                 style={{ 
-                   transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.320, 1)',
-                   transitionDelay: `${index * 50}ms`
-                 }}
-              >
-                <div className="relative">
-                  <img
-                    src={monastery.image}
-                    alt={monastery.name}
-                     className="w-full h-64 object-cover transition-all duration-1200 group-hover:scale-110 group-hover:brightness-110"
-                     style={{ transitionTimingFunction: 'cubic-bezier(0.23, 1, 0.320, 1)' }}
+                <div key={index} className="group">
+                  <TextStaggerHover
+                    text={monastery.name}
+                    index={index}
+                    className="text-2xl lg:text-3xl font-bold text-gray-900 block cursor-pointer hover:text-blue-700 transition-colors duration-500"
                   />
-                  <div className="absolute top-4 right-4 bg-white bg-opacity-90 px-3 py-1 rounded-full transition-all duration-800 group-hover:bg-opacity-100 group-hover:scale-110 group-hover:shadow-md">
-                    <span className="text-sm font-medium text-gray-700 transition-colors duration-600">{monastery.founded}</span>
-                  </div>
                 </div>
-                <div className="p-6 transition-all duration-800 group-hover:bg-gray-50">
-                  <h3 className="text-2xl font-bold mb-3 text-gray-900 transition-all duration-600 group-hover:text-blue-800 group-hover:scale-105">{monastery.name}</h3>
-                  <p className="text-gray-600 mb-4 leading-relaxed transition-all duration-600 group-hover:text-gray-700">{monastery.description}</p>
-                  
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm flex items-center transition-all duration-500 group-hover:bg-blue-200 group-hover:scale-105">
-                      <MapPin className="w-3 h-3 mr-1 transition-transform duration-500 group-hover:scale-110" />
+              ))}
+            </div>
+
+            {/* Images Side - Right with Details Overlay */}
+                <div className="relative">
+              <HoverSliderImageWrap className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+                {/* Images Layer */}
+                {monasteries.map((monastery, index) => (
+                  <HoverSliderImage
+                    key={`image-${index}`}
+                    index={index}
+                    imageUrl={monastery.image}
+                    alt={monastery.name}
+                    className="w-full h-full object-cover"
+                  />
+                ))}
+                
+                {/* Details Overlay - Single Layer that Changes Content */}
+                <div className="absolute inset-0 flex items-end">
+                  <ProgressiveBlur 
+                    direction="top" 
+                    blurLayers={6} 
+                    blurIntensity={0.5}
+                    className="absolute inset-0"
+                  />
+                  <div className="relative z-10 p-6 text-white w-full bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+                    {monasteries.map((monastery, index) => (
+                      <div 
+                        key={`details-${index}`} 
+                        className={`space-y-4 transition-opacity duration-300 ${index === 0 ? 'block' : 'hidden'}`}
+                        data-monastery-index={index}
+                      >
+                        <div className="flex items-center gap-4 mb-3">
+                          <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm flex items-center">
+                      <MapPin className="w-3 h-3 mr-1" />
                       {monastery.location}
                     </span>
-                    <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm flex items-center transition-all duration-500 group-hover:bg-green-200 group-hover:scale-105">
-                      <Mountain className="w-3 h-3 mr-1 transition-transform duration-500 group-hover:scale-110" />
+                          <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm flex items-center">
+                      <Mountain className="w-3 h-3 mr-1" />
                       {monastery.elevation}
                     </span>
                   </div>
 
-                  <div className="border-t border-gray-200 pt-4 mt-4 transition-all duration-600 group-hover:border-gray-300">
-                    <div className="grid grid-cols-2 gap-4 text-center">
-                      <div className="transition-all duration-500 group-hover:scale-105">
-                        <p className="text-gray-500 text-xs uppercase tracking-wide transition-colors duration-500 group-hover:text-gray-600">Founded</p>
-                        <p className="font-bold text-lg transition-all duration-500 group-hover:text-blue-700 group-hover:scale-110">{monastery.founded}</p>
+                        <p className="text-white/90 text-sm leading-relaxed mb-3">
+                          {monastery.description}
+                        </p>
+                        
+                        <div className="flex items-center gap-4 text-xs text-white/80 mb-3">
+                          <div className="flex items-center gap-1">
+                            <Calendar className="w-3 h-3" />
+                            <span>Founded {monastery.founded}</span>
                       </div>
-                      <div className="transition-all duration-500 group-hover:scale-105">
-                        <p className="text-gray-500 text-xs uppercase tracking-wide transition-colors duration-500 group-hover:text-gray-600">Visitors</p>
-                        <p className="font-bold text-lg transition-all duration-500 group-hover:text-green-700 group-hover:scale-110">{monastery.visitors}</p>
+                          <div className="flex items-center gap-1">
+                            <Users className="w-3 h-3" />
+                            <span>{monastery.visitors}</span>
                       </div>
                     </div>
-                    <div className="mt-4 p-3 bg-gray-50 rounded-lg transition-all duration-600 group-hover:bg-gray-100 group-hover:shadow-md">
-                      <p className="text-sm text-gray-700 transition-colors duration-500 group-hover:text-gray-800">
-                        <strong className="transition-colors duration-500 group-hover:text-blue-700">Special:</strong> {monastery.speciality}
-                      </p>
-                    </div>
-                  </div>
+                        
+                        <div className="p-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
+                          <p className="text-xs text-white/90">
+                            <strong className="text-white">Special:</strong> {monastery.speciality}
+                          </p>
                 </div>
               </div>
             ))}
           </div>
+                </div>
+              </HoverSliderImageWrap>
+            </div>
+          </HoverSlider>
         </div>
       </div>
+
 
       {/* Map and Districts Section */}
       <div className="max-w-6xl mx-auto px-4 py-16">
