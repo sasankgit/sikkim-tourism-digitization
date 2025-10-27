@@ -20,3 +20,5 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 For questions, contact the repo owner via GitHub.
 a project made for sih hackathon;
 includes monastery 3d models of sikkim and scriptures 
+
+just for streak
